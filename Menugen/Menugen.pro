@@ -5,7 +5,7 @@ DESTDIR  = bin
 TARGET   = Menugen
 TEMPLATE = app
 
-TEMP_FILES  = ../bin/tmp
+TEMP_FILES  = bin/tmp
 MOC_DIR     = $$TEMP_FILES
 OBJECTS_DIR = $$TEMP_FILES
 
