@@ -11,8 +11,11 @@ OBJECTS_DIR = $$TEMP_FILES
 
 
 SOURCES += src/main.cpp \
-           src/MainWindow.cpp
+           src/MainWindow.cpp \
+           src/RecipesModel.cpp
 
-HEADER  += src/MainWindow.hpp
+
+HEADER  += src/MainWindow.hpp \
+           src/RecipesModel.hpp
 
 FORMS   += ui/MainWindow.ui

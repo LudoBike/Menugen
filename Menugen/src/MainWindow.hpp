@@ -12,6 +12,7 @@
 
 
 #include <QMainWindow>
+#include "RecipesModel.hpp"
 
 
 namespace Ui
@@ -23,10 +24,11 @@ namespace Ui
 class MainWindow : public QMainWindow
 {
     Ui::MainWindow *d_ui;
+    RecipesModel    d_recipes;
     
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    virtual ~MainWindow();
 
 private:
     void connectSlots();
