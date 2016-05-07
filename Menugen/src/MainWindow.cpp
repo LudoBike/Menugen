@@ -10,21 +10,23 @@
 
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
-#include "RecipesModel.hpp"
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
     :
     QMainWindow(parent),
     d_ui(new Ui::MainWindow),
-    d_recipes(this)
+    d_recipesModel()
 {
     d_ui->setupUi(this);
-
-    d_ui->listView_Recipes->setModel(&d_recipes);
-
+    d_ui->RecipesView->setModel(&d_recipesModel);
+    
+    setupDatabase();
+    d_recipesModel.setQuery("SELECT name FROM recipes ORDER BY name ASC", d_db);
+    
     connectSlots();
-    d_recipes.debugAdd();
+
 }
 
 MainWindow::~MainWindow()
@@ -32,12 +34,24 @@ MainWindow::~MainWindow()
     delete d_ui;
 }
 
-void MainWindow::connectSlots()
+void MainWindow::setupDatabase()
 {
-    QObject::connect(d_ui->action_Quit, &QAction::triggered,
-                     qApp,              &QApplication::quit);
+    d_db = QSqlDatabase::addDatabase("QSQLITE");
+    d_db.setDatabaseName("database.db");
+    if (!d_db.open())
+    {
+        QMessageBox mb(QMessageBox::Critical,
+                       "Menugen Error",
+                       "Fail to open database",
+                       QMessageBox::Abort,
+                       this);
+        mb.exec();
+    }
 
-    // View Model connections
-    QObject::connect(d_recipes,              &QAbstractItemModel::dataChanged,
-                     d_ui->listView_Recipes, &QAbstractItemView::update);
+}
+
+void MainWindow::connectSlots() const
+{
+    QObject::connect(d_ui->actionQuit, &QAction::triggered,
+                     qApp,              &QApplication::quit);
 }

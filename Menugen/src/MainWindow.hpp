@@ -12,7 +12,9 @@
 
 
 #include <QMainWindow>
-#include "RecipesModel.hpp"
+#include <QtSql>
+#include <QStringListModel>
+#include "RecipeList.hpp"
 
 
 namespace Ui
@@ -24,14 +26,16 @@ namespace Ui
 class MainWindow : public QMainWindow
 {
     Ui::MainWindow *d_ui;
-    RecipesModel    d_recipes;
+    QSqlDatabase    d_db;
+    QSqlQueryModel  d_recipesModel;
     
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow();
 
 private:
-    void connectSlots();
+    void setupDatabase();
+    void connectSlots() const;
 };
 
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>779</width>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QListView" name="listView_Recipes">
-      <property name="isWrapping" stdset="0">
-       <bool>false</bool>
-      </property>
-     </widget>
+     <widget class="QListView" name="RecipesView"/>
     </item>
    </layout>
   </widget>
@@ -29,7 +25,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>779</width>
      <height>23</height>
     </rect>
    </property>
@@ -37,12 +33,12 @@
     <property name="title">
      <string>&amp;Fichier</string>
     </property>
-    <addaction name="action_Quit"/>
+    <addaction name="actionQuit"/>
    </widget>
    <addaction name="menu_File"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_Quit">
+  <action name="actionQuit">
    <property name="text">
     <string>&amp;Quitter</string>
    </property>

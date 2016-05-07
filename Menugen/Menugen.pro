@@ -1,5 +1,5 @@
 CONFIG += qt debug
-QT     += core widgets
+QT     += core widgets sql
 
 DESTDIR  = bin
 TARGET   = Menugen
@@ -12,10 +12,8 @@ OBJECTS_DIR = $$TEMP_FILES
 
 SOURCES += src/main.cpp \
            src/MainWindow.cpp \
-           src/RecipesModel.cpp
 
 
 HEADER  += src/MainWindow.hpp \
-           src/RecipesModel.hpp
 
 FORMS   += ui/MainWindow.ui
