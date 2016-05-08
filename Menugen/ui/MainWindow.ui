@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>779</width>
-    <height>590</height>
+    <width>758</width>
+    <height>579</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,32 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QListView" name="RecipesView"/>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="labelRecipes">
+        <property name="text">
+         <string>Recettes</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListView" name="RecipesView"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="MenuView">
+        <property name="text">
+         <string>Menus</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="tableWidget"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -25,7 +50,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>779</width>
+     <width>758</width>
      <height>23</height>
     </rect>
    </property>
@@ -33,9 +58,17 @@
     <property name="title">
      <string>&amp;Fichier</string>
     </property>
+    <addaction name="actionNewRecipe"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menu_Editer">
+    <property name="title">
+     <string>&amp;Editer</string>
+    </property>
+    <addaction name="actionGenMenu"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_Editer"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuit">
@@ -44,6 +77,22 @@
    </property>
    <property name="shortcut">
     <string extracomment="shortcut to quit the app">Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionNewRecipe">
+   <property name="text">
+    <string>&amp;Nouvelle Recette</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionGenMenu">
+   <property name="text">
+    <string>&amp;Générer un menu</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
   </action>
  </widget>

@@ -3,7 +3,7 @@
               MainWindow Class
     
       This class provides to manage the all the app
-      and to manage the window too.
+      and the other windows too.
 
  */
 
@@ -14,7 +14,6 @@
 #include <QMainWindow>
 #include <QtSql>
 #include <QStringListModel>
-#include "RecipeList.hpp"
 
 
 namespace Ui
@@ -32,6 +31,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow();
+
+public slots:
+    void newRecipe();
 
 private:
     void setupDatabase();

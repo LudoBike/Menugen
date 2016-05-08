@@ -10,7 +10,9 @@
 
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
+#include "NewRecipeWindow.hpp"
 #include <QMessageBox>
+#include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -34,6 +36,15 @@ MainWindow::~MainWindow()
     delete d_ui;
 }
 
+void MainWindow::newRecipe()
+{
+    NewRecipeWindow w(d_db, this);
+    w.exec();
+    QSqlQuery tmp = d_recipesModel.query();
+    d_recipesModel.clear();
+    d_recipesModel.setQuery(tmp.executedQuery());
+}
+
 void MainWindow::setupDatabase()
 {
     d_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -41,17 +52,28 @@ void MainWindow::setupDatabase()
     if (!d_db.open())
     {
         QMessageBox mb(QMessageBox::Critical,
-                       "Menugen Error",
-                       "Fail to open database",
+                       tr("Menugen Erreur"),
+                       tr("Impossible d'ouvrir la base de donnée"),
                        QMessageBox::Abort,
                        this);
         mb.exec();
     }
 
+    QSqlQuery query(d_db);
+    if (!d_db.tables().contains("recipes"))
+        query.exec("CREATE TABLE recipes(id INTEGER PRIMARY KEY, name TEXT)");
+
+    if(!d_db.tables().contains("menus"))
+        query.exec(QString("CREATE TABLE menus(id INTEGER, mon INTEGER,") +
+                   QString("tue INTEGER, wed INTEGER, thu INTEGER,") +
+                   QString("fri INTEGER, sat INTEGER, sun INTEGER)"));
 }
 
 void MainWindow::connectSlots() const
 {
-    QObject::connect(d_ui->actionQuit, &QAction::triggered,
+    QObject::connect(d_ui->actionQuit,  &QAction::triggered,
                      qApp,              &QApplication::quit);
+
+    QObject::connect(d_ui->actionNewRecipe, &QAction::triggered,
+                     this,                  &MainWindow::newRecipe);
 }
